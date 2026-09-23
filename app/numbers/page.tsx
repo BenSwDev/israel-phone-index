@@ -190,7 +190,8 @@ function generateRows(ranges: RangeRecord[], start: number, limit: number) {
     if (end > start && rows.length < limit) {
       const from = Math.max(0, start - cursor);
       for (let i = from; i < range.count && rows.length < limit; i++) {
-        rows.push({ phone: range.prefix + String(i).padStart(range.xCount, "0"), range });
+        const suffix = range.xCount === 0 ? "" : String(i).padStart(range.xCount, "0");
+        rows.push({ phone: range.prefix + suffix, range });
       }
     }
     cursor = end;
